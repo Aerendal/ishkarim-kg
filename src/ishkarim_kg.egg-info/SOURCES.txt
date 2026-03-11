@@ -1,0 +1,13 @@
+README.md
+pyproject.toml
+src/ishkarim_kg/__init__.py
+src/ishkarim_kg/extracted.py
+src/ishkarim_kg/utils.py
+src/ishkarim_kg.egg-info/PKG-INFO
+src/ishkarim_kg.egg-info/SOURCES.txt
+src/ishkarim_kg.egg-info/dependency_links.txt
+src/ishkarim_kg.egg-info/requires.txt
+src/ishkarim_kg.egg-info/top_level.txt
+src/ishkarim_kg/snippets/__init__.py
+src/ishkarim_kg/snippets/extracted.py
+tests/test_kg.py

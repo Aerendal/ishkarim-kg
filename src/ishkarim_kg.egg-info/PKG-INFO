@@ -1,0 +1,123 @@
+Metadata-Version: 2.4
+Name: ishkarim-kg
+Version: 0.1.0
+Summary: Grafy wiedzy: GraphRAG, LinkML, SHACL, ontologie, RDF w SQLite.
+License: MIT
+Keywords: ishkarim,kg,local-ai,cpu-first
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Provides-Extra: rag
+Requires-Dist: sentence-transformers>=2.2; extra == "rag"
+Provides-Extra: sqlite
+Requires-Dist: sqlite-utils>=3.35; extra == "sqlite"
+Provides-Extra: dev
+Requires-Dist: pytest>=7; extra == "dev"
+Requires-Dist: pytest-cov; extra == "dev"
+
+# ishkarim-kg
+
+> Grafy wiedzy: GraphRAG, LinkML, SHACL, ontologie, RDF w SQLite.
+
+## Instalacja
+
+```bash
+pip install -e projects/ishkarim-kg
+```
+
+Lub lokalnie z tego repozytorium:
+
+```bash
+cd projects/ishkarim-kg
+pip install -e ".[dev]"
+```
+
+## Użycie
+
+```python
+import ishkarim_kg as m
+
+# Lista dostępnych modułów
+print(m.MODULES)
+
+# Wczytaj indeks wiedzy
+docs = m.load_knowledge_index()
+```
+
+## Obszar tematyczny
+
+Ten projekt agreguje wiedzę z **14 katalogów** obszaru `kg`:
+
+- `Algorytm Pearla w AI`
+- `AutoSchemaKG - ShapeSpresso - LinkML - Metanome`
+- `Automatyczne schematy i hybrydowe wyszukiwanie w Qdrant`
+- `Graph‑RAG, NLIs & Visual Builders`
+- `Indukcja schematów JSON-Schema i SHACL`
+- `Indukcja schematów i ontologii wykonawczych`
+- `LinkML w pre-commit i Actions  - walidacja offline`
+- `Lokalne grafy semantyczne i silniki narracyjne`
+- … i 6 więcej (pełna lista w [MODULES.md](MODULES.md))
+
+## Przykładowe źródła
+
+### Algorytm Pearla w AI
+
+# WORK: Algorytm Pearla w AI
+## 0-Metadane
+- Katalog: Algorytm Pearla w AI
+- Pliki: 10 (bez placeholderów: część 1–12 z numeracją nieciągłą)
+- Tagi: Judea-Pearl, do-calculus, przyczynowość, DAG, sieci-bayesowskie, belief-propagation, CausalAI, DoWhy, causal-learn, kontrfaktualne, wnioskowanie-przyczynowe
+
+### AutoSchemaKG - ShapeSpresso - LinkML - Metanome
+
+# WORK: AutoSchemaKG - ShapeSpresso - LinkML - Metanome
+## 0-Metadane
+- Katalog: AutoSchemaKG - ShapeSpresso - LinkML - Metanome
+- Pliki: 21 (bez placeholderów 22–60)
+- Tagi: schema-induction, LinkML, Metanome, AutoSchemaKG, ShapeSpresso, JSON-Schema, SQL-DDL, FD, IND, ontology, deterministic-builds
+
+### Automatyczne schematy i hybrydowe wyszukiwanie w Qdrant
+
+# WORK: Automatyczne schematy i hybrydowe wyszukiwanie w Qdrant
+## 0-Metadane
+- Katalog: Automatyczne schematy i hybrydowe wyszukiwanie w Qdrant
+- Pliki: 16 (bez placeholderów)
+- Tagi: LinkML, Qdrant, hybrydowe wyszukiwanie, schema automation, embeddingi, SPLADE, ColBERT, reranking, SQLite, offline, JSONL
+
+
+## Struktura projektu
+
+```
+ishkarim-kg/
+├── pyproject.toml        # installable package
+├── README.md
+├── MODULES.md            # pełny indeks 14 katalogów-źródeł
+├── src/
+│   └── ishkarim_kg/
+│       ├── __init__.py   # publiczne API
+│       ├── utils.py      # wspólne narzędzia
+│       └── *.py          # kod wyekstrahowany z WORK.md
+├── tests/
+│   ├── __init__.py
+│   └── test_kg.py
+└── docs/
+    ├── overview.md
+    └── sources.md
+```
+
+## Testy
+
+```bash
+pytest projects/ishkarim-kg/tests/ -v
+```
+
+## Źródło danych
+
+Katalogi źródłowe znajdują się w katalogu głównym repozytorium Ishkarim.
+Każdy katalog zawiera `WORK.md` (notatki badawcze) i `TAGS.md` (metadane).
+
+---
+*Wygenerowano automatycznie przez `scripts/build_projects.py`*
