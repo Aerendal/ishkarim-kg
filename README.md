@@ -1,103 +1,102 @@
 # ishkarim-kg
 
-> Grafy wiedzy: GraphRAG, LinkML, SHACL, ontologie, RDF w SQLite.
+> **Grafy wiedzy lokalnie — GraphRAG, LinkML, SHACL walidacja, ontologie w SQLite**
 
-## Instalacja
+[![Tests](https://img.shields.io/badge/tests-passing-brightgreen)]()
+[![Python](https://img.shields.io/badge/python-3.10%2B-blue)]()
+[![License](https://img.shields.io/badge/license-MIT-green)]()
+[![CPU-only](https://img.shields.io/badge/CPU-only-orange)]()
+
+## Problem, który rozwiązujemy
+
+- Strukturalne zapytania nad bazą wiedzy (relacje, nie tylko full-text)
+- Walidacja spójności ontologii przez SHACL shapes przed ingestem
+- LinkML jako jeden schemat → JSON-Schema + SQL + SHACL automatycznie
+
+Pełna lista → [docs/PROBLEMS.md](docs/PROBLEMS.md)
+
+## Szybki start
 
 ```bash
+# Instalacja
 pip install -e projects/ishkarim-kg
+
+# Demo (10 sekund)
+python projects/ishkarim-kg/demo.py
 ```
 
-Lub lokalnie z tego repozytorium:
-
-```bash
-cd projects/ishkarim-kg
-pip install -e ".[dev]"
-```
-
-## Użycie
+## Użycie w kodzie
 
 ```python
 import ishkarim_kg as m
 
-# Lista dostępnych modułów
-print(m.MODULES)
-
-# Wczytaj indeks wiedzy
+# Wszystkie 14 katalogi wiedzy obszaru 'kg'
 docs = m.load_knowledge_index()
+print(f"{len(docs)} katalogów | obszar: {m.__area__}")
+
+# Narzędzia pomocnicze
+from ishkarim_kg.utils import read_work_md, extract_tags, extract_python_blocks
 ```
 
-## Obszar tematyczny
+## Dla kogo
 
-Ten projekt agreguje wiedzę z **14 katalogów** obszaru `kg`:
+- Firmowa baza wiedzy z relacjami między pojęciami i bytem
+- Walidacja danych przed importem do systemu RAG
+- Knowledge engineering — budowa ontologii dziedzinowej (medyczna, prawna)
 
-- `Algorytm Pearla w AI`
-- `AutoSchemaKG - ShapeSpresso - LinkML - Metanome`
-- `Automatyczne schematy i hybrydowe wyszukiwanie w Qdrant`
-- `Graph‑RAG, NLIs & Visual Builders`
-- `Indukcja schematów JSON-Schema i SHACL`
-- `Indukcja schematów i ontologii wykonawczych`
-- `LinkML w pre-commit i Actions  - walidacja offline`
-- `Lokalne grafy semantyczne i silniki narracyjne`
-- … i 6 więcej (pełna lista w [MODULES.md](MODULES.md))
+## Dokumentacja
 
-## Przykładowe źródła
+| Plik | Zawartość |
+|------|-----------|
+| [docs/PROBLEMS.md](docs/PROBLEMS.md) | Co rozwiązuje / czego nie / znane problemy |
+| [docs/api.md](docs/api.md) | Dokumentacja API |
+| [docs/overview.md](docs/overview.md) | Przegląd obszaru |
+| [docs/sources.md](docs/sources.md) | Źródłowe katalogi wiedzy |
+| [MODULES.md](MODULES.md) | Pełny indeks 14 katalogów |
 
-### Algorytm Pearla w AI
+## Testy i benchmarki
 
-# WORK: Algorytm Pearla w AI
-## 0-Metadane
-- Katalog: Algorytm Pearla w AI
-- Pliki: 10 (bez placeholderów: część 1–12 z numeracją nieciągłą)
-- Tagi: Judea-Pearl, do-calculus, przyczynowość, DAG, sieci-bayesowskie, belief-propagation, CausalAI, DoWhy, causal-learn, kontrfaktualne, wnioskowanie-przyczynowe
+```bash
+# Testy jednostkowe
+pytest tests/test_kg.py -v
 
-### AutoSchemaKG - ShapeSpresso - LinkML - Metanome
+# Testy domenowe (z prawdziwymi danymi)
+pytest tests/test_kg_domain.py -v
 
-# WORK: AutoSchemaKG - ShapeSpresso - LinkML - Metanome
-## 0-Metadane
-- Katalog: AutoSchemaKG - ShapeSpresso - LinkML - Metanome
-- Pliki: 21 (bez placeholderów 22–60)
-- Tagi: schema-induction, LinkML, Metanome, AutoSchemaKG, ShapeSpresso, JSON-Schema, SQL-DDL, FD, IND, ontology, deterministic-builds
-
-### Automatyczne schematy i hybrydowe wyszukiwanie w Qdrant
-
-# WORK: Automatyczne schematy i hybrydowe wyszukiwanie w Qdrant
-## 0-Metadane
-- Katalog: Automatyczne schematy i hybrydowe wyszukiwanie w Qdrant
-- Pliki: 16 (bez placeholderów)
-- Tagi: LinkML, Qdrant, hybrydowe wyszukiwanie, schema automation, embeddingi, SPLADE, ColBERT, reranking, SQLite, offline, JSONL
-
+# Benchmarki wydajnościowe
+python benchmarks/bench_kg.py --quick
+```
 
 ## Struktura projektu
 
 ```
 ishkarim-kg/
-├── pyproject.toml        # installable package
+├── demo.py                    ← uruchom mnie
+├── pyproject.toml
 ├── README.md
-├── MODULES.md            # pełny indeks 14 katalogów-źródeł
-├── src/
-│   └── ishkarim_kg/
-│       ├── __init__.py   # publiczne API
-│       ├── utils.py      # wspólne narzędzia
-│       └── *.py          # kod wyekstrahowany z WORK.md
+├── MODULES.md                 ← 14 katalogów-źródeł
+├── docs/
+│   ├── PROBLEMS.md            ← co rozwiązuje / czego nie
+│   ├── api.md                 ← dokumentacja API
+│   ├── overview.md
+│   └── sources.md
+├── src/ishkarim_kg/
+│   ├── __init__.py            ← MODULES list + load_knowledge_index()
+│   ├── utils.py               ← read_work_md, extract_tags, extract_python_blocks
+│   └── snippets/              ← kod z WORK.md (referencyjny)
 ├── tests/
-│   ├── __init__.py
-│   └── test_kg.py
-└── docs/
-    ├── overview.md
-    └── sources.md
+│   ├── test_kg.py         ← testy jednostkowe
+│   └── test_kg_domain.py  ← testy domenowe
+└── benchmarks/
+    └── bench_kg.py        ← benchmarki wydajnościowe
 ```
 
-## Testy
+## Ograniczenia
 
-```bash
-pytest projects/ishkarim-kg/tests/ -v
-```
-
-## Źródło danych
-
-Katalogi źródłowe znajdują się w katalogu głównym repozytorium Ishkarim.
-Każdy katalog zawiera `WORK.md` (notatki badawcze) i `TAGS.md` (metadane).
+> ⚠️ To projekt **referencyjny** — wzorce i wiedza, nie gotowa biblioteka produkcyjna.
+> Przed wdrożeniem produkcyjnym przeczytaj [docs/PROBLEMS.md](docs/PROBLEMS.md).
 
 ---
-*Wygenerowano automatycznie przez `scripts/build_projects.py`*
+
+*Część ekosystemu [Ishkarim](../../README.md) — 14 katalogów wiedzy obszaru `kg`*
+*Wygenerowano: 2026-03-11 | `scripts/build_projects.py` + `scripts/enrich_projects.py`*
