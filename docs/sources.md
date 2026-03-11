@@ -5,7 +5,7 @@
 > Łącznie unikalnych URL: **515**
 
 
-## 📄 Artykuły naukowe (18)
+## Artykuły naukowe (18)
 
 - <https://arxiv.org/abs/2004.08532>  
   _źródło: `Zestawy OSS do ewaluacji RAG i KG (2025–26)`_
@@ -44,7 +44,7 @@
 - <https://www.arxiv.org/pdf/2507.22305>  
   _źródło: `New methods for KG consistency  and coverage`_
 
-## 🐙 Repozytoria GitHub (124)
+## Repozytoria GitHub (124)
 
 - <https://github.com/RDFLib/pySHACL>  
   _źródło: `Indukcja schematów JSON-Schema i SHACL`, `Indukcja schematów i ontologii wykonawczych`, `New methods for KG consistency  and coverage` +1_
@@ -207,7 +207,7 @@
 - <https://github.com/microsoft/EconML>  
   _źródło: `Algorytm Pearla w AI`_
 
-## 📚 Dokumentacja (37)
+## Dokumentacja (37)
 
 - <https://doorstop.readthedocs.io/>  
   _źródło: `Śledzenie wymagań i pokrycia w Doorstop-shell trac`_
@@ -284,7 +284,7 @@
 - <https://www.w3.org/2009/sparql/docs/tests/summary.html>  
   _źródło: `Zestawy OSS do ewaluacji RAG i KG (2025–26)`_
 
-## 🔗 Inne zasoby (336)
+## Inne zasoby (336)
 
 - <http://www.w3.org/2001/XMLSchema>  
   _źródło: `Automatyczne schematy i hybrydowe wyszukiwanie w Q`, `Indukcja schematów JSON-Schema i SHACL`, `Indukcja schematów i ontologii wykonawczych` +3_
@@ -447,7 +447,7 @@
 - <https://datatracker.ietf.org/doc/html/rfc9535>  
   _źródło: `Indukcja schematów JSON-Schema i SHACL`_
 
-## 📁 Katalogi źródłowe
+## Katalogi źródłowe
 
 Obszar `kg` zawiera **14** katalogów:
 
